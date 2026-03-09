@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Real-Time Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a href="#">CodingNinja</a></div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><button id="signInBtn"><a href="#">SignIn</a></button></li>
+                <li><button id="signUpBtn"><a href="#">SignUp</a></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="main-content-wrapper">
+        <section class="map-hero">
+            <div id="map"></div>
+        </section>
+
+        <header class="nav">
+            <div class="brand"><span class="logo"></span><span>Real-Time Map</span></div>
+            <div class="actions">
+                <button class="ghost" id="centerBtn">Center</button>
+                <button class="btn" id="addBtn">Report</button>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="reports-wrap">
+                <aside class="side-panel">
+                    <div class="panel-head">
+                        <h4 style="margin:0">Recent Reports</h4>
+                        <small id="count">0</small>
+                    </div>
+                    <div style="margin-bottom:8px">
+                        <input id="search" placeholder="Search warnings..." style="width:100%;padding:8px;border-radius:8px;border:1px solid #eef2f7" />
+                    </div>
+                    <div class="list" id="reports"></div>
+                    <hr style="margin:12px 0;border:none;border-top:1px solid #f1f5f9">
+                    <div style="font-size:13px;color:var(--muted)">
+                        Click a report to pan the map and open details. Use the "Report" button or click the map to add a new marker.
+                    </div>
+                </aside>
+
+                <section style="flex:1;padding-left:12px">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                        <h3 style="margin:0">Overview</h3>
+                        <div style="color:var(--muted)">Live feed from the WebSocket server</div>
+                    </div>
+                    <div class="cards" style="margin-bottom:16px">
+                        <div class="card">
+                            <h4 style="margin-top:0">Live Reports</h4>
+                            <p id="liveSummary" style="margin:0;color:var(--muted)">No reports yet.</p>
+                        </div>
+                        <div class="card">
+                            <h4 style="margin-top:0">How it works</h4>
+                            <p style="margin:0;color:var(--muted)">Click the map or the "Report" button to send latitude, longitude and extra info to the backend.</p>
+                        </div>
+                        <div class="card">
+                            <h4 style="margin-top:0">Tips</h4>
+                            <ul style="margin:6px 0 0 18px;color:var(--muted)">
+                                <li>Run a WebSocket server on the same host (or adjust WS URL in script).</li>
+                                <li>Use JSON messages.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div> <footer>Built with Leaflet • Save as <code>index.html</code></footer>
+
+    <div id="dataForm" role="dialog" aria-hidden="true">
+        <label for="warning">Warning</label>
+        <input id="warning" placeholder="e.g. Flooding on road" />
+        <label for="rainfall">Rainfall (mm)</label>
+        <input id="rainfall" placeholder="e.g. 24" />
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" rows="3" placeholder="Additional info"></textarea>
+        <div style="display:flex;gap:8px;margin-top:8px">
+            <button id="sendBtn" class="btn" style="flex:1">Send</button>
+            <button id="cancelBtn" class="ghost" style="flex:1">Cancel</button>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal-container">
+        <div class="form-content">
+            <span class="close-btn">&times;</span>
+            <h2>Welcome Back</h2>
+            <form action="#">
+                <div class="input-field">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="extra-links">
+                    <a href="#">Forgot Password?</a> |
+                    <a href="#" id="switchToSignUp">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="signUpModal" class="modal-container">
+        <div class="form-content" style="width: 380px;">
+            <span class="close-btn">&times;</span>
+            <h2>Create Your Account</h2>
+            <form action="#">
+                <div class="input-field">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="input-field">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <div class="extra-links">
+                    <p>Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

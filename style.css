@@ -1,0 +1,455 @@
+/* ============================================= */
+/* GLOBAL & ROOT STYLES                 */
+/* ============================================= */
+:root {
+  --accent: #0ea5a4;
+  --muted: #6b7280;
+  --bg: #f8fafc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  /* This is the corrected body rule with the essential padding */
+  padding-top: 70px; 
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+}
+
+a {
+  text-decoration: none;
+}
+/* ============================================= */
+/* CODINGNINJA NAVBAR (TOP)             */
+/* ============================================= */
+.navbar {
+  background: linear-gradient(135deg, var(--accent), #065f46);
+  padding: 15px 25px; 
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2500;
+  box-sizing: border-box;
+}
+
+.navdiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo a {
+  font-size: 35px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Base styles for the menu (hidden on mobile by default) */
+#nav-menu {
+  list-style: none;
+  display: flex; /* Changed from none to flex for alignment */
+}
+
+#nav-menu li a {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#nav-menu button {
+  background-color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  width: 90px;
+  cursor: pointer;
+}
+
+#nav-menu button a {
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* ============================================= */
+/* DESKTOP NAVBAR STYLES (Large Screens)      */
+/* ============================================= */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none; /* Hide hamburger on desktop */
+  }
+
+  #nav-menu {
+    flex-direction: row; /* Horizontal layout */
+    align-items: center;
+    gap: 0;
+  }
+
+  #nav-menu li a {
+    margin-right: 25px;
+  }
+
+  #nav-menu li button {
+    margin-left: 10px;
+  }
+}
+
+/* ============================================= */
+/* MOBILE NAVBAR STYLES (Small Screens)       */
+/* ============================================= */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block; /* Show hamburger on mobile */
+    cursor: pointer;
+  }
+
+  .hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* This is the new slide-out menu, now ONLY for mobile */
+  #nav-menu {
+    position: fixed;
+    top: 68px;
+    right: 0;
+    
+    width: 280px;
+    height: calc(100vh - 68px);
+    background-color: #065f46;
+    padding: 2rem;
+
+    flex-direction: column; /* Vertical layout */
+    align-items: flex-start;
+    gap: 1.5rem; 
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  #nav-menu.active {
+    transform: translateX(0);
+  }
+}
+
+/* ============================================= */
+/* MAP & UI CONTENT STYLES              */
+/* ============================================= */
+.map-hero {
+  height: 60vh;
+  padding: 12px;
+  background: transparent;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2, 6, 23, .12);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: white;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .06);
+  z-index: 1200;
+}
+
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.brand .logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--accent), #065f46);
+  display: inline-block;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn {
+  background: var(--accent);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  color: var(--muted);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.content {
+  padding: 18px;
+  background: var(--bg);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(2, 6, 23, .04);
+}
+
+.reports-wrap {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.side-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  overflow: auto;
+  min-width: 260px;
+  max-width: 380px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #eef2f7;
+  cursor: pointer;
+}
+
+.item small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+footer {
+  padding: 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+#dataForm {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(2, 6, 23, .18);
+  z-index: 2000;
+  display: none;
+  width: 320px;
+}
+
+#dataForm label {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+#dataForm input, #dataForm textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #e6eef5;
+}
+
+/* ============================================= */
+/* MEDIA QUERIES                    */
+/* ============================================= */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  #nav-menu {
+    position: static;
+    flex-direction: row;
+    width: auto;
+    background-color: transparent;
+    padding: 0;
+    transition: none;
+    gap: 0;
+    align-items: center;
+  }
+
+  #nav-menu li a {
+    margin-right: 25px;
+  }
+
+  #nav-menu li button {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 920px) {
+  .map-hero {
+    height: 50vh;
+  }
+  .reports-wrap {
+    flex-direction: column;
+  }
+  .side-panel {
+    max-width: none;
+  }
+}
+
+/* ============================================= */
+/* LOGIN & SIGNUP MODAL STYLES                   */
+/* ============================================= */
+
+/* The main container (hidden by default) */
+.modal-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 3000; /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The actual form box for both login and signup */
+.form-content {
+    position: relative;
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 360px; /* Default width */
+    text-align: center;
+    animation: fadeIn 0.3s;
+}
+
+/* Renamed from .login-form-content to .form-content */
+.login-form-content {
+    /* This class is no longer needed, styles are in .form-content */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.form-content h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-content .input-field {
+    position: relative;
+    margin-bottom: 1.2rem;
+}
+
+.form-content .input-field input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.form-content .input-field input:focus {
+    border-color: var(--accent); /* Use theme color */
+    box-shadow: 0 0 5px rgba(14, 165, 164, 0.3); /* Use theme color */
+}
+
+/* Applying your green gradient theme to the buttons */
+.form-content .btn {
+    background: linear-gradient(135deg, var(--accent), #065f46);
+    border: none;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.form-content .btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.form-content .extra-links {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.form-content .extra-links a {
+    color: var(--accent); /* Use theme color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Close button (the "x") */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Blur effect for background */
+#main-content-wrapper.blur-background {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
